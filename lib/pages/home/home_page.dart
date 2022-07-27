@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoesye/theme.dart';
+import 'package:shoesye/widgets/product_card.dart';
+import 'package:shoesye/widgets/product_tile.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -178,17 +180,50 @@ class HomePage extends StatelessWidget {
       ),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        child: Row(children: [
-          SizedBox(
-            width: defaultMargin,
-          ),
-          Row(
-            children: [
-
-            ],
-          ),
-        ],),
+        child: Row(
+          children: [
+            SizedBox(
+              width: defaultMargin,
+            ),
+            Row(
+              children: const [
+                ProductCard(),
+                ProductCard(),
+                ProductCard(),
+              ],
+            ),
+          ],
+        ),
       ),
+    );
+  }
+
+  Widget newArrivalsTitle() {
+    return Container(
+      margin: EdgeInsets.only(
+        top: defaultMargin,
+        left: defaultMargin,
+        right: defaultMargin,
+      ),
+      child: Text(
+        'New Arrivals',
+        style: primaryTextStyle.copyWith(
+          fontSize: 22,
+          fontWeight: semiBold,
+        ),
+      ),
+    );
+  }
+
+  Widget newArrivals() {
+    return Container(
+      margin: const EdgeInsets.only(top: 14,),
+      child: Column(children: [
+        ProductTile(),
+        ProductTile(),
+        ProductTile(),
+        ProductTile(),
+      ],),
     );
   }
 
@@ -199,6 +234,9 @@ class HomePage extends StatelessWidget {
         header(),
         categories(),
         popularProductsTitle(),
+        popoularProducts(),
+        newArrivalsTitle(),
+        newArrivals(),
       ],
     );
   }
