@@ -235,13 +235,15 @@ class SignUpPage extends StatelessWidget {
     );
   }
 
-  Widget signUpButton() {
+  Widget signUpButton(BuildContext context) {
     return Container(
       height: 50,
       width: double.infinity,
       margin: EdgeInsets.only(top: 20),
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/home');
+        },
         style: TextButton.styleFrom(
             backgroundColor: primaryColor,
             shape: RoundedRectangleBorder(
@@ -293,7 +295,7 @@ class SignUpPage extends StatelessWidget {
             usernameInput(),
             emailInput(),
             passwordInput(),
-            signUpButton(),
+            signUpButton(context),
             Spacer(),
             footer(context),
           ]),
