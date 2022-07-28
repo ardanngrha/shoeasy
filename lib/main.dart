@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoesye/pages/detail_chat_page.dart';
+import 'package:shoesye/pages/edit_profile_page.dart';
 import 'package:shoesye/pages/home/main_page.dart';
 import 'package:shoesye/pages/sign_in_page.dart';
 import 'package:shoesye/pages/splash_page.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         '/sign-up': (context) => const SignUpPage(),
         '/home': (context) => const MainPage(),
         '/detail-chat': (context) => DetailChatPage(),
+        '/edit-profile': (context) => EditProfilePage(),
       },
     );
   }

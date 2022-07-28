@@ -4,7 +4,7 @@ import 'package:shoesye/theme.dart';
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
-  header() {
+  header(BuildContext context) {
     return AppBar(
       backgroundColor: backgroundColor1,
       automaticallyImplyLeading: false,
@@ -43,9 +43,15 @@ class ProfilePage extends StatelessWidget {
                   ],
                 ),
               ),
-              Image.asset(
-                'assets/button_exit.png',
-                width: 20,
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/sign-in', (route) => false);
+                },
+                child: Image.asset(
+                  'assets/button_exit.png',
+                  width: 20,
+                ),
               ),
             ],
           ),
@@ -75,7 +81,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget content() {
+  Widget content(BuildContext context) {
     return Expanded(
         child: Container(
       width: double.infinity,
@@ -98,7 +104,12 @@ class ProfilePage extends StatelessWidget {
               fontWeight: semiBold,
             ),
           ),
-          menuItem('Edit Profile'),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/edit-profile');
+            },
+            child: menuItem('Edit Profile'),
+          ),
           menuItem('Your Orders'),
           menuItem('Help'),
           const SizedBox(
@@ -123,8 +134,8 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        header(),
-        content(),
+        header(context),
+        content(context),
       ],
     );
   }
