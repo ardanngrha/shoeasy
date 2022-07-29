@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoesye/theme.dart';
+import 'package:shoeasy/theme.dart';
 
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:shoesye/theme.dart';
+import 'package:shoeasy/theme.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -12,7 +12,8 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    Timer(Duration(seconds: 3), () => Navigator.pushNamed(context, '/sign-in'));
+    Timer(const Duration(seconds: 3),
+        () => Navigator.pushNamed(context, '/sign-in'));
 
     super.initState();
   }
@@ -25,7 +26,7 @@ class _SplashPageState extends State<SplashPage> {
         child: Container(
           width: 130,
           height: 150,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/image_splash.png'),
             ),

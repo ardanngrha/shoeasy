@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shoesye/pages/home/home_page.dart';
+import 'package:shoeasy/pages/home/home_page.dart';
 import 'chat_page.dart';
 import 'wishlist_page.dart';
 import 'profile_page.dart';
-import 'package:shoesye/theme.dart';
+import 'package:shoeasy/theme.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -106,16 +106,12 @@ class _MainPageState extends State<MainPage> {
     switch (currentIndex) {
       case 0:
         return const HomePage();
-        break;
       case 1:
         return const ChatPage();
-        break;
       case 2:
         return const WishlistPage();
-        break;
       case 3:
         return const ProfilePage();
-        break;
       default:
         return const HomePage();
     }

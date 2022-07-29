@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shoesye/theme.dart';
-import 'package:shoesye/widgets/product_card.dart';
-import 'package:shoesye/widgets/product_tile.dart';
+import 'package:shoeasy/theme.dart';
+import 'package:shoeasy/widgets/product_card.dart';
+import 'package:shoeasy/widgets/product_tile.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -217,13 +217,17 @@ class HomePage extends StatelessWidget {
 
   Widget newArrivals() {
     return Container(
-      margin: const EdgeInsets.only(top: 14,),
-      child: Column(children: [
-        ProductTile(),
-        ProductTile(),
-        ProductTile(),
-        ProductTile(),
-      ],),
+      margin: const EdgeInsets.only(
+        top: 14,
+      ),
+      child: Column(
+        children: const [
+          ProductTile(),
+          ProductTile(),
+          ProductTile(),
+          ProductTile(),
+        ],
+      ),
     );
   }
 

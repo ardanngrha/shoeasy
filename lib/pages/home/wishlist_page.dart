@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shoesye/theme.dart';
-import 'package:shoesye/widgets/wishlist_card.dart';
+import 'package:shoeasy/theme.dart';
+import 'package:shoeasy/widgets/wishlist_card.dart';
 
 class WishlistPage extends StatelessWidget {
   const WishlistPage({Key? key}) : super(key: key);

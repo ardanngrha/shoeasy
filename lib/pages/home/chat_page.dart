@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shoesye/theme.dart';
-import 'package:shoesye/widgets/chat_tile.dart';
+import 'package:shoeasy/theme.dart';
+import 'package:shoeasy/widgets/chat_tile.dart';
 
 class ChatPage extends StatelessWidget {
   const ChatPage({Key? key}) : super(key: key);

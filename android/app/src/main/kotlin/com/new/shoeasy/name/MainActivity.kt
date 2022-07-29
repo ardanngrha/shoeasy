@@ -1,4 +1,4 @@
-package com.example.shoesye
+package com.new.shoeasy.name
 
 import io.flutter.embedding.android.FlutterActivity
 
