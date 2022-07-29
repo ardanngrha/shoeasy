@@ -235,53 +235,54 @@ class SignUpPage extends StatelessWidget {
     );
   }
 
-  Widget signUpButton(BuildContext context) {
-    return Container(
-      height: 50,
-      width: double.infinity,
-      margin: const EdgeInsets.only(top: 20),
-      child: TextButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/home');
-        },
-        style: TextButton.styleFrom(
-            backgroundColor: primaryColor,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12))),
-        child: Text(
-          'Sign Up',
-          style: primaryTextStyle.copyWith(fontSize: 16, fontWeight: medium),
-        ),
-      ),
-    );
-  }
-
-  Widget footer(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 30),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'Already have an account?',
-            style: subtitleTextStyle.copyWith(fontSize: 12),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Text(
-              ' Sign In',
-              style: purpleTextStyle.copyWith(fontSize: 12, fontWeight: medium),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    Widget signUpButton() {
+      return Container(
+        height: 50,
+        width: double.infinity,
+        margin: const EdgeInsets.only(top: 20),
+        child: TextButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/home');
+          },
+          style: TextButton.styleFrom(
+              backgroundColor: primaryColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12))),
+          child: Text(
+            'Sign Up',
+            style: primaryTextStyle.copyWith(fontSize: 16, fontWeight: medium),
+          ),
+        ),
+      );
+    }
+
+    Widget footer() {
+      return Container(
+        margin: const EdgeInsets.only(bottom: 30),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Already have an account?',
+              style: subtitleTextStyle.copyWith(fontSize: 12),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Text(
+                ' Sign In',
+                style:
+                    purpleTextStyle.copyWith(fontSize: 12, fontWeight: medium),
+              ),
+            )
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: backgroundColor1,
@@ -295,9 +296,9 @@ class SignUpPage extends StatelessWidget {
             usernameInput(),
             emailInput(),
             passwordInput(),
-            signUpButton(context),
+            signUpButton(),
             const Spacer(),
-            footer(context),
+            footer(),
           ]),
         ),
       ),

@@ -4,32 +4,6 @@ import 'package:shoeasy/theme.dart';
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({Key? key}) : super(key: key);
 
-  header(BuildContext context) {
-    return AppBar(
-      leading: IconButton(
-        icon: const Icon(Icons.close),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
-      backgroundColor: backgroundColor1,
-      elevation: 0,
-      centerTitle: true,
-      title: const Text(
-        'Edit Profile',
-      ),
-      actions: [
-        IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.check,
-            color: primaryColor,
-          ),
-        )
-      ],
-    );
-  }
-
   Widget nameInput() {
     return Container(
       margin: const EdgeInsets.only(
@@ -143,9 +117,35 @@ class EditProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    header() {
+      return AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.close),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        backgroundColor: backgroundColor1,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          'Edit Profile',
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.check,
+              color: primaryColor,
+            ),
+          )
+        ],
+      );
+    }
+
     return Scaffold(
       backgroundColor: backgroundColor3,
-      appBar: header(context),
+      appBar: header(),
       body: content(),
       resizeToAvoidBottomInset: false,
     );
