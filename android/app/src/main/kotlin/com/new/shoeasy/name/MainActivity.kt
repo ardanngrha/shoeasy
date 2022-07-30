@@ -1,4 +1,4 @@
-package com.new.shoeasy.name
+package com.shoeasy.name
 
 import io.flutter.embedding.android.FlutterActivity
 
