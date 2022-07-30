@@ -1,4 +1,4 @@
-# shoesye
+# ShoEasy!
 
 A new Flutter project.
 
