@@ -264,7 +264,10 @@ class CheckoutPage extends StatelessWidget {
                   fontSize: 16,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/checkout-success', (route) => false);
+              },
             ),
           ),
         ],
