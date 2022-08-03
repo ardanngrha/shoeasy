@@ -97,6 +97,7 @@ class CheckoutSuccessPage extends StatelessWidget {
 
     return Scaffold(
       appBar: header(),
+      body: content()
     );
   }
 }
