@@ -5,7 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:shoeasy/models/user_model.dart';
 
 class AuthService {
-  String baseUrl = 'http://10.237.71.28:8005/api';
+  // url for local server
+  String baseUrl = 'http://10.0.2.2:8000/api';
 
   Future<UserModel> register({
     String? name,
