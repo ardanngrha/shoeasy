@@ -5,7 +5,7 @@ import 'package:shoeasy/theme.dart';
 import 'package:shoeasy/widgets/loading_button.dart';
 
 class SignUpPage extends StatefulWidget {
-  SignUpPage({Key? key}) : super(key: key);
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -347,7 +347,7 @@ class _SignUpPageState extends State<SignUpPage> {
             usernameInput(),
             emailInput(),
             passwordInput(),
-            isLoading ? LoadingButton() : signUpButton(),
+            isLoading ? const LoadingButton() : signUpButton(),
             const Spacer(),
             footer(),
           ]),
