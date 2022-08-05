@@ -1,138 +1,183 @@
 import 'package:flutter/material.dart';
 import 'package:shoeasy/theme.dart';
+import 'package:provider/provider.dart';
+import 'package:shoeasy/providers/auth_provider.dart';
+import 'package:shoeasy/widgets/loading_button.dart';
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
 
-  Widget header() {
-    return Container(
-      margin: EdgeInsets.only(top: defaultMargin),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(
-          'Login',
-          style: primaryTextStyle.copyWith(
-            fontSize: 24,
-            fontWeight: semiBold,
-          ),
-        ),
-        const SizedBox(
-          height: 2,
-        ),
-        Text(
-          'Sign in to continue',
-          style: subtitleTextStyle,
-        ),
-      ]),
-    );
-  }
+  @override
+  State<SignInPage> createState() => _SignInPageState();
+}
 
-  Widget emailInput() {
-    return Container(
-      margin: const EdgeInsets.only(top: 70),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Email Address',
-            style: primaryTextStyle.copyWith(
-              fontSize: 16,
-              fontWeight: medium,
-            ),
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-          Container(
-            height: 50,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-            ),
-            decoration: BoxDecoration(
-              color: backgroundColor2,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Center(
-              child: Row(
-                children: [
-                  Image.asset(
-                    'assets/icon_email.png',
-                    width: 17,
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  Expanded(
-                      child: TextFormField(
-                    style: primaryTextStyle,
-                    decoration: InputDecoration.collapsed(
-                      hintText: 'Your Email Addresss',
-                      hintStyle: subtitleTextStyle,
-                    ),
-                  ))
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+class _SignInPageState extends State<SignInPage> {
+  TextEditingController emailController = TextEditingController(text: '');
 
-  Widget passwordInput() {
-    return Container(
-      margin: const EdgeInsets.only(top: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Password',
-            style: primaryTextStyle.copyWith(
-              fontSize: 16,
-              fontWeight: medium,
-            ),
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-          Container(
-            height: 50,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-            ),
-            decoration: BoxDecoration(
-              color: backgroundColor2,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Center(
-              child: Row(
-                children: [
-                  Image.asset(
-                    'assets/icon_password.png',
-                    width: 17,
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  Expanded(
-                      child: TextFormField(
-                    style: primaryTextStyle,
-                    obscureText: true,
-                    decoration: InputDecoration.collapsed(
-                      hintText: 'Your Password',
-                      hintStyle: subtitleTextStyle,
-                    ),
-                  ))
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  TextEditingController passwordController = TextEditingController(text: '');
+
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleSignin() async {
+      setState(() {
+        isLoading = true;
+      });
+
+      if (await authProvider.login(
+        email: emailController.text,
+        password: passwordController.text,
+      )) {
+        Navigator.pushNamed(context, '/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: alertColor,
+            content: const Text(
+              'Gagal Login!',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
+
+      setState(() {
+        isLoading = false;
+      });
+    }
+
+    Widget header() {
+      return Container(
+        margin: EdgeInsets.only(top: defaultMargin),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(
+            'Login',
+            style: primaryTextStyle.copyWith(
+              fontSize: 24,
+              fontWeight: semiBold,
+            ),
+          ),
+          const SizedBox(
+            height: 2,
+          ),
+          Text(
+            'Sign in to continue',
+            style: subtitleTextStyle,
+          ),
+        ]),
+      );
+    }
+
+    Widget emailInput() {
+      return Container(
+        margin: const EdgeInsets.only(top: 70),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Email Address',
+              style: primaryTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: medium,
+              ),
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            Container(
+              height: 50,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+              ),
+              decoration: BoxDecoration(
+                color: backgroundColor2,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Center(
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'assets/icon_email.png',
+                      width: 17,
+                    ),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    Expanded(
+                        child: TextFormField(
+                      controller: emailController,
+                      style: primaryTextStyle,
+                      decoration: InputDecoration.collapsed(
+                        hintText: 'Your Email Addresss',
+                        hintStyle: subtitleTextStyle,
+                      ),
+                    ))
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    Widget passwordInput() {
+      return Container(
+        margin: const EdgeInsets.only(top: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Password',
+              style: primaryTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: medium,
+              ),
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            Container(
+              height: 50,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+              ),
+              decoration: BoxDecoration(
+                color: backgroundColor2,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Center(
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'assets/icon_password.png',
+                      width: 17,
+                    ),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    Expanded(
+                        child: TextFormField(
+                      controller: passwordController,
+                      style: primaryTextStyle,
+                      obscureText: true,
+                      decoration: InputDecoration.collapsed(
+                        hintText: 'Your Password',
+                        hintStyle: subtitleTextStyle,
+                      ),
+                    ))
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
     Widget signInButton() {
       return Container(
         height: 50,
@@ -140,7 +185,7 @@ class SignInPage extends StatelessWidget {
         margin: const EdgeInsets.only(top: 20),
         child: TextButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/home');
+            handleSignin();
           },
           style: TextButton.styleFrom(
               backgroundColor: primaryColor,
@@ -188,7 +233,7 @@ class SignInPage extends StatelessWidget {
             header(),
             emailInput(),
             passwordInput(),
-            signInButton(),
+            isLoading ? const LoadingButton() : signInButton(),
             const Spacer(),
             footer(),
           ]),
