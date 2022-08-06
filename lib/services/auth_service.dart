@@ -1,4 +1,4 @@
-// Service untuk authentication request ke backed
+// service for authentication request to backend
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -8,6 +8,7 @@ class AuthService {
   // url for local server
   String baseUrl = 'http://10.0.2.2:8000/api';
 
+  // register user
   Future<UserModel> register({
     String? name,
     String? username,
@@ -31,8 +32,6 @@ class AuthService {
       body: body,
     );
 
-    print(response.body);
-
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body)['data'];
       UserModel user = UserModel.fromJson(data['user']);
@@ -43,6 +42,7 @@ class AuthService {
     }
   }
 
+  // user login
   Future<UserModel> login({
     String? email,
     String? password,
@@ -61,8 +61,6 @@ class AuthService {
       headers: headers,
       body: body,
     );
-
-    print(response.body);
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body)['data'];
