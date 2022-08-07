@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shoeasy/models/product_model.dart';
 import 'package:shoeasy/theme.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({Key? key}) : super(key: key);
+  final ProductModel product;
+  const ProductCard(this.product, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +28,8 @@ class ProductCard extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            Image.asset(
-              'assets/image_shoes.png',
+            Image.network(
+              'http://10.0.2.2:8000${product.galleries[0].url}',
               width: 215,
               height: 150,
               fit: BoxFit.cover,
@@ -40,7 +42,7 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hiking',
+                    product.category.name,
                     style: secondaryTextStyle.copyWith(
                       fontSize: 12,
                     ),
@@ -49,18 +51,19 @@ class ProductCard extends StatelessWidget {
                     height: 6,
                   ),
                   Text(
-                    'COURT VISION 2.0',
+                    product.name,
                     style: blackTextStyle.copyWith(
                       fontSize: 18,
                       fontWeight: semiBold,
                     ),
                     overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
                   const SizedBox(
                     height: 6,
                   ),
                   Text(
-                    '\$56,75',
+                    '\$${product.price.toString()}',
                     style: priceTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: medium,

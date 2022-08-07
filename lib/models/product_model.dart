@@ -3,25 +3,25 @@ import 'package:shoeasy/models/gallery_model.dart';
 
 class ProductModel {
   int? id;
-  String? name;
+  late String name;
   double? price;
   String? description;
   String? tags;
-  CategoryModel? category;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  List<GalleryModel>? galleries;
+  late CategoryModel category;
+  // DateTime? createdAt;
+  // DateTime? updatedAt;
+  late List<GalleryModel> galleries;
 
   ProductModel({
     this.id,
-    this.name,
+    required this.name,
     this.price,
     this.description,
     this.tags,
-    this.category,
-    this.createdAt,
-    this.updatedAt,
-    this.galleries,
+    required this.category,
+    // this.createdAt,
+    // this.updatedAt,
+    required this.galleries,
   });
 
   ProductModel.fromJson(Map<String, dynamic> json) {
@@ -34,8 +34,8 @@ class ProductModel {
     galleries = json['galleries']
         .map<GalleryModel>((gallery) => GalleryModel.fromJson(gallery))
         .toList();
-    createdAt = DateTime.parse(json['createdAt']);
-    updatedAt = DateTime.parse(json['updatedAt']);
+    // createdAt = DateTime.parse(json['createdAt']);
+    // updatedAt = DateTime.parse(json['updatedAt']);
   }
 
   Map<String, dynamic> toJson() {
@@ -45,10 +45,10 @@ class ProductModel {
       'price': price,
       'description': description,
       'tags': tags,
-      'category': category?.toJson(),
-      'galleries': galleries?.map((gallery) => gallery.toJson()).toList(),
-      'createdAt': createdAt,
-      'updatedAt': updatedAt,
+      'category': category.toJson(),
+      'galleries': galleries.map((gallery) => gallery.toJson()).toList(),
+      // 'createdAt': createdAt,
+      // 'updatedAt': updatedAt,
     };
   }
 }

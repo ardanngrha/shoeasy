@@ -13,6 +13,7 @@ class ProductService {
     var url = '$baseUrl/products';
     var headers = {
       'Content-Type': 'application/json',
+      'connection': 'keep-alive',
     };
 
     var response = await http.get(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shoeasy/models/user_model.dart';
 import 'package:shoeasy/providers/auth_provider.dart';
+import 'package:shoeasy/providers/product_provider.dart';
 import 'package:shoeasy/theme.dart';
 import 'package:shoeasy/widgets/product_card.dart';
 import 'package:shoeasy/widgets/product_tile.dart';
@@ -13,6 +14,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
 
     Widget header() {
       return Container(
@@ -199,11 +201,11 @@ class HomePage extends StatelessWidget {
                 width: defaultMargin,
               ),
               Row(
-                children: const [
-                  ProductCard(),
-                  ProductCard(),
-                  ProductCard(),
-                ],
+                children: productProvider.products
+                    .map(
+                      (product) => ProductCard(product),
+                    )
+                    .toList(),
               ),
             ],
           ),

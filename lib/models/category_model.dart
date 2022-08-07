@@ -1,9 +1,9 @@
 class CategoryModel {
   int? id;
-  String? name;
+  late String name;
 
   CategoryModel({
-    required this.id,
+    this.id,
     required this.name,
   });
 
