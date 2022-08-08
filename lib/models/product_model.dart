@@ -5,7 +5,7 @@ class ProductModel {
   int? id;
   late String name;
   double? price;
-  String? description;
+  late String description;
   String? tags;
   late CategoryModel category;
   // DateTime? createdAt;
@@ -16,12 +16,12 @@ class ProductModel {
     this.id,
     required this.name,
     this.price,
-    this.description,
+    required this.description,
     this.tags,
     required this.category,
+    required this.galleries,
     // this.createdAt,
     // this.updatedAt,
-    required this.galleries,
   });
 
   ProductModel.fromJson(Map<String, dynamic> json) {

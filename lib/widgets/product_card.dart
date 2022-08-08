@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoeasy/models/product_model.dart';
+import 'package:shoeasy/pages/product_page.dart';
 import 'package:shoeasy/theme.dart';
 
 class ProductCard extends StatelessWidget {
@@ -10,7 +11,12 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/product');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductPage(product),
+          ),
+        );
       },
       child: Container(
         width: 215,
