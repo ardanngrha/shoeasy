@@ -29,7 +29,8 @@ class ProductCard extends StatelessWidget {
               height: 30,
             ),
             Image.network(
-              'http://10.0.2.2:8000${product.galleries[0].url}',
+              product.galleries[0].url,
+              // 'http://10.0.2.2:8000${product.galleries[0].url}',
               width: 215,
               height: 150,
               fit: BoxFit.cover,
