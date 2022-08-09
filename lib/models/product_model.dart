@@ -4,7 +4,7 @@ import 'package:shoeasy/models/gallery_model.dart';
 class ProductModel {
   int? id;
   late String name;
-  double? price;
+  late double price;
   late String description;
   String? tags;
   late CategoryModel category;
@@ -15,7 +15,7 @@ class ProductModel {
   ProductModel({
     this.id,
     required this.name,
-    this.price,
+    required this.price,
     required this.description,
     this.tags,
     required this.category,

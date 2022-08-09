@@ -9,9 +9,9 @@ import 'package:shoeasy/pages/home/main_page.dart';
 import 'package:shoeasy/pages/sign_in_page.dart';
 import 'package:shoeasy/pages/splash_page.dart';
 import 'package:shoeasy/pages/sign_up_page.dart';
-import 'package:shoeasy/pages/product_page.dart';
 import 'package:shoeasy/providers/auth_provider.dart';
 import 'package:shoeasy/providers/product_provider.dart';
+import 'package:shoeasy/providers/wishlist_provider.dart';
 
 void main() => runApp(const MyApp());
 
@@ -27,7 +27,10 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => ProductProvider(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (context) => WishlistProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

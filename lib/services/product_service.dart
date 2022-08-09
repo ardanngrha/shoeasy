@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 import 'package:shoeasy/models/product_model.dart';
 
@@ -20,7 +21,7 @@ class ProductService {
       headers: headers,
     );
 
-    print(response.body);
+    debugPrint(response.body);
 
     if (response.statusCode == 200) {
       List data = jsonDecode(response.body)['data']['data'];
