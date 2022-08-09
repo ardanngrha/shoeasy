@@ -12,6 +12,7 @@ import 'package:shoeasy/pages/sign_up_page.dart';
 import 'package:shoeasy/providers/auth_provider.dart';
 import 'package:shoeasy/providers/cart_provider.dart';
 import 'package:shoeasy/providers/product_provider.dart';
+import 'package:shoeasy/providers/transaction_provider.dart';
 import 'package:shoeasy/providers/wishlist_provider.dart';
 
 void main() => runApp(const MyApp());
@@ -35,6 +36,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => CartProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => TransactionProvider(),
+      ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

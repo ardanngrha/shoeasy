@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoeasy/providers/auth_provider.dart';
+import 'package:shoeasy/providers/cart_provider.dart';
+import 'package:shoeasy/providers/transaction_provider.dart';
 import 'package:shoeasy/theme.dart';
 import 'package:shoeasy/widgets/checkout_card.dart';
+import 'package:shoeasy/widgets/loading_button.dart';
 
-class CheckoutPage extends StatelessWidget {
+class CheckoutPage extends StatefulWidget {
   const CheckoutPage({Key? key}) : super(key: key);
 
   @override
+  State<CheckoutPage> createState() => _CheckoutPageState();
+}
+
+class _CheckoutPageState extends State<CheckoutPage> {
+  bool isLoading = false;
+
+  @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+    TransactionProvider transactionProvider =
+        Provider.of<TransactionProvider>(context);
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
     header() {
       return AppBar(
         backgroundColor: backgroundColor1,
@@ -16,6 +33,26 @@ class CheckoutPage extends StatelessWidget {
           'Checkout Details',
         ),
       );
+    }
+
+    handleCheckout() async {
+      setState(() {
+        isLoading = true;
+      });
+
+      if (await transactionProvider.checkout(
+        authProvider.user.token.toString(),
+        cartProvider.carts,
+        cartProvider.totalPrice(),
+      )) {
+        cartProvider.carts = [];
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/checkout-success', (route) => false);
+      }
+
+      setState(() {
+        isLoading = false;
+      });
     }
 
     Widget content() {
@@ -39,8 +76,13 @@ class CheckoutPage extends StatelessWidget {
                     fontSize: 16,
                   ),
                 ),
-                const CheckoutCard(),
-                const CheckoutCard(),
+                Column(
+                  children: cartProvider.carts
+                      .map(
+                        (cart) => CheckoutCard(cart),
+                      )
+                      .toList(),
+                ),
               ],
             ),
           ),
@@ -159,10 +201,12 @@ class CheckoutPage extends StatelessWidget {
                   children: [
                     Text(
                       'Product Quantity',
-                      style: secondaryTextStyle.copyWith(fontSize: 12),
+                      style: secondaryTextStyle.copyWith(
+                        fontSize: 12,
+                      ),
                     ),
                     Text(
-                      '2 Items',
+                      '${cartProvider.totalItems()} Items',
                       style: primaryTextStyle.copyWith(
                         fontWeight: medium,
                       ),
@@ -180,7 +224,7 @@ class CheckoutPage extends StatelessWidget {
                       style: secondaryTextStyle.copyWith(fontSize: 12),
                     ),
                     Text(
-                      '\$203,32',
+                      '\$${cartProvider.totalPrice()}',
                       style: primaryTextStyle.copyWith(
                         fontWeight: medium,
                       ),
@@ -198,7 +242,7 @@ class CheckoutPage extends StatelessWidget {
                       style: secondaryTextStyle.copyWith(fontSize: 12),
                     ),
                     Text(
-                      'FREE',
+                      '\$10',
                       style: primaryTextStyle.copyWith(
                         fontWeight: medium,
                       ),
@@ -225,7 +269,7 @@ class CheckoutPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '\$203,32',
+                      '\$${cartProvider.totalPrice() + 10}',
                       style: priceTextStyle.copyWith(
                         fontWeight: semiBold,
                       ),
@@ -244,32 +288,36 @@ class CheckoutPage extends StatelessWidget {
             thickness: 1,
             color: Color(0xff2E3141),
           ),
-          Container(
-            height: 50,
-            width: double.infinity,
-            margin: EdgeInsets.symmetric(
-              vertical: defaultMargin,
-            ),
-            child: TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: primaryColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+          isLoading
+              ? Container(
+                  margin: const EdgeInsets.only(
+                    bottom: 30,
+                  ),
+                  child: const LoadingButton(),
+                )
+              : Container(
+                  height: 50,
+                  width: double.infinity,
+                  margin: EdgeInsets.symmetric(
+                    vertical: defaultMargin,
+                  ),
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    onPressed: handleCheckout,
+                    child: Text(
+                      'Checkout Now',
+                      style: primaryTextStyle.copyWith(
+                        fontWeight: semiBold,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              child: Text(
-                'Checkout Now',
-                style: primaryTextStyle.copyWith(
-                  fontWeight: semiBold,
-                  fontSize: 16,
-                ),
-              ),
-              onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, '/checkout-success', (route) => false);
-              },
-            ),
-          ),
         ],
       );
     }

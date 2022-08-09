@@ -184,9 +184,7 @@ class _SignInPageState extends State<SignInPage> {
         width: double.infinity,
         margin: const EdgeInsets.only(top: 20),
         child: TextButton(
-          onPressed: () {
-            handleSignin();
-          },
+          onPressed: handleSignin,
           style: TextButton.styleFrom(
               backgroundColor: primaryColor,
               shape: RoundedRectangleBorder(
