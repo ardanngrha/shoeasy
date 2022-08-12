@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoeasy/models/product_model.dart';
+import 'package:shoeasy/pages/product_page.dart';
 import 'package:shoeasy/theme.dart';
 
 class ProductCard extends StatelessWidget {
@@ -8,9 +9,15 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/product');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductPage(product),
+          ),
+        );
       },
       child: Container(
         width: 215,
@@ -29,7 +36,8 @@ class ProductCard extends StatelessWidget {
               height: 30,
             ),
             Image.network(
-              'http://10.0.2.2:8000${product.galleries[0].url}',
+              product.galleries[0].url,
+              // 'http://10.0.2.2:8000${product.galleries[0].url}',
               width: 215,
               height: 150,
               fit: BoxFit.cover,

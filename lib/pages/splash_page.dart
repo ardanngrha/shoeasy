@@ -21,6 +21,7 @@ class _SplashPageState extends State<SplashPage> {
 
   getInit() async {
     await Provider.of<ProductProvider>(context, listen: false).getProducts();
+    // ignore: use_build_context_synchronously
     Navigator.pushNamed(context, '/sign-in');
   }
 

@@ -28,6 +28,7 @@ class AuthProvider with ChangeNotifier {
       _user = user;
       return true;
     } catch (e) {
+      // ignore: avoid_print
       print(e);
       return false;
     }
@@ -45,6 +46,7 @@ class AuthProvider with ChangeNotifier {
       _user = user;
       return true;
     } catch (e) {
+      // ignore: avoid_print
       print(e);
       return false;
     }
