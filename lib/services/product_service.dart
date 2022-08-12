@@ -1,7 +1,6 @@
 // service for product requests to backend
 
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:shoeasy/models/product_model.dart';
 
