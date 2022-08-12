@@ -15,9 +15,10 @@ class CheckoutSuccessPage extends StatelessWidget {
       );
     }
 
-    Widget content() {
+    content() {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
             'assets/icon_empty_cart.png',
@@ -97,7 +98,8 @@ class CheckoutSuccessPage extends StatelessWidget {
 
     return Scaffold(
       appBar: header(),
-      body: content()
+      body: content(),
+      backgroundColor: backgroundColor2,
     );
   }
 }
