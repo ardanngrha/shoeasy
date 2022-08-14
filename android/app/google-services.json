@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "475110295348",
+    "project_id": "shoeasy-9f99e",
+    "storage_bucket": "shoeasy-9f99e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:475110295348:android:d9801d813315384ad84761",
+        "android_client_info": {
+          "package_name": "com.shoeasy.adann"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "475110295348-5d3si9sorjkc3sl642h7aid03a42n8i4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa1UTOwoP7jM2Q_t6bUmzc8wc53nbdIqY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "475110295348-5d3si9sorjkc3sl642h7aid03a42n8i4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
