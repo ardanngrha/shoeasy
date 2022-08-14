@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shoeasy/models/product_model.dart';
+import 'package:shoeasy/pages/detail_chat_page.dart';
 import 'package:shoeasy/theme.dart';
 
 class ChatTile extends StatelessWidget {
@@ -8,7 +10,14 @@ class ChatTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/detail-chat');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailChatPage(
+              UninitializedProductModel(),
+            ),
+          ),
+        );
       },
       child: Container(
         margin: const EdgeInsets.only(

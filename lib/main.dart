@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:shoeasy/pages/cart_page.dart';
 import 'package:shoeasy/pages/checkout_page.dart';
 import 'package:shoeasy/pages/checkout_success_page.dart';
-import 'package:shoeasy/pages/detail_chat_page.dart';
 import 'package:shoeasy/pages/edit_profile_page.dart';
 import 'package:shoeasy/pages/home/main_page.dart';
 import 'package:shoeasy/pages/sign_in_page.dart';
@@ -52,7 +51,6 @@ class MyApp extends StatelessWidget {
           '/sign-in': (context) => const SignInPage(),
           '/sign-up': (context) => const SignUpPage(),
           '/home': (context) => const MainPage(),
-          '/detail-chat': (context) => const DetailChatPage(),
           '/edit-profile': (context) => const EditProfilePage(),
           '/cart': (context) => const CartPage(),
           '/checkout': (context) => const CheckoutPage(),

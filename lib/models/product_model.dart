@@ -3,23 +3,23 @@ import 'package:shoeasy/models/gallery_model.dart';
 
 class ProductModel {
   int? id;
-  late String name;
-  late double price;
-  late String description;
+  String? name;
+  double? price;
+  String? description;
   String? tags;
-  late CategoryModel category;
+  CategoryModel? category;
   // DateTime? createdAt;
   // DateTime? updatedAt;
-  late List<GalleryModel> galleries;
+  List<GalleryModel>? galleries;
 
   ProductModel({
     this.id,
-    required this.name,
-    required this.price,
-    required this.description,
+    this.name,
+    this.price,
+    this.description,
     this.tags,
-    required this.category,
-    required this.galleries,
+    this.category,
+    this.galleries,
     // this.createdAt,
     // this.updatedAt,
   });
@@ -45,10 +45,14 @@ class ProductModel {
       'price': price,
       'description': description,
       'tags': tags,
-      'category': category.toJson(),
-      'galleries': galleries.map((gallery) => gallery.toJson()).toList(),
+      'category': category!.toJson(),
+      'galleries': galleries!.map((gallery) => gallery.toJson()).toList(),
       // 'createdAt': createdAt,
       // 'updatedAt': updatedAt,
     };
   }
+}
+
+class UninitializedProductModel extends ProductModel {
+  
 }
