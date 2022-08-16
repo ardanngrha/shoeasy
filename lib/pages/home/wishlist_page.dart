@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoeasy/providers/page_provider.dart';
 import 'package:shoeasy/providers/wishlist_provider.dart';
 import 'package:shoeasy/theme.dart';
 import 'package:shoeasy/widgets/wishlist_card.dart';
@@ -10,6 +11,7 @@ class WishlistPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+    PageProvider pageProvider = Provider.of<PageProvider>(context);
 
     Widget header() {
       return AppBar(
@@ -68,7 +70,7 @@ class WishlistPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       )),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/home');
+                    pageProvider.currentIndex = 0;
                   },
                   child: Text(
                     'Explore Store',

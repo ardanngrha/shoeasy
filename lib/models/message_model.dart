@@ -5,7 +5,7 @@ class MessageModel {
   int? userId;
   String? userName;
   String? userImage;
-  bool? isFromUser;
+  late bool isFromUser;
   ProductModel? product;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -15,7 +15,7 @@ class MessageModel {
     this.userId,
     this.userName,
     this.userImage,
-    this.isFromUser,
+    required this.isFromUser,
     this.product,
     this.createdAt,
     this.updatedAt,
@@ -27,7 +27,7 @@ class MessageModel {
     userName = json['userName'];
     userImage = json['userImage'];
     isFromUser = json['isFromUser'];
-    product = json['product'] == {}
+    product = json['product'].isEmpty
         ? UninitializedProductModel()
         : ProductModel.fromJson(json['product']);
     createdAt = DateTime.parse(json['createdAt']);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoeasy/models/message_model.dart';
 import 'package:shoeasy/models/product_model.dart';
 import 'package:shoeasy/providers/auth_provider.dart';
 import 'package:shoeasy/services/message_service.dart';
@@ -22,7 +23,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
-    handleAddMessage () async {
+    handleAddMessage() async {
       await MessageService().addMessage(
         user: authProvider.user,
         isFromUser: true,
@@ -194,23 +195,30 @@ class _DetailChatPageState extends State<DetailChatPage> {
     }
 
     Widget content() {
-      return ListView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-        ),
-        children: const [
-          ChatBubble(
-            isSender: true,
-            text: 'Hi, This item is still available?',
-            hasProduct: true,
-          ),
-          ChatBubble(
-            isSender: false,
-            text: 'Good night, This item is only available in size 42 and 43',
-            hasProduct: false,
-          )
-        ],
-      );
+      return StreamBuilder<List<MessageModel>>(
+          stream: MessageService()
+              .getMessagesByUserId(userId: authProvider.user.id),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  children: snapshot.data!
+                      .map(
+                        (MessageModel message) => ChatBubble(
+                          isSender: message.isFromUser,
+                          text: message.message.toString(),
+                          product: message.product,
+                        ),
+                      )
+                      .toList());
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          });
     }
 
     return Scaffold(

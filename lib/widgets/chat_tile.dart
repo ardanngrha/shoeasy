@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shoeasy/models/message_model.dart';
 import 'package:shoeasy/models/product_model.dart';
 import 'package:shoeasy/pages/detail_chat_page.dart';
 import 'package:shoeasy/theme.dart';
 
 class ChatTile extends StatelessWidget {
-  const ChatTile({Key? key}) : super(key: key);
+  final MessageModel message;
+  const ChatTile(this.message, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,7 @@ class ChatTile extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Good Evening!, for this item we only have a 42 size.',
+                        message.message.toString(),
                         style: secondaryTextStyle.copyWith(
                           fontWeight: light,
                         ),
